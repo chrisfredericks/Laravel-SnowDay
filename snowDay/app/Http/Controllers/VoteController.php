@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Vote;
+use Illuminate\Support\Facades\DB;
 
 class VoteController extends Controller
 {
@@ -83,6 +84,32 @@ class VoteController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+    public function show() {
+        $data['votes'] = DB::table('votes')->get();
+        $data['yesVotes'] = DB::table('votes')->where('vote', 1)->count('vote');
+        $data['noVotes'] = DB::table('votes')->where('vote', 0)->count('vote');
+    
+    
+        //dd($yesVotes);
+        //return $votes;
+        return view('votes.index', ['data' => $data]);
+
+    }
+
+    public function showOne($id) {
+
+        $vote = DB::table('votes')->find($id);
+    
+        return view('votes.show', ['vote' => $vote]);
+
+    }
+
+    public function delete($id) {
+        Vote::destroy($id);
+        return redirect('/votes/show');
+    }
+
     public function index()
     {
         return view('votes.create');

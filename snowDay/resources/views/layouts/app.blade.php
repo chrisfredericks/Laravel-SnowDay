@@ -66,9 +66,11 @@
                                 </a>
                                 {{-- Added User Management Link --}}
                                 <!-- TODO: Should we show this link to everyone? Or should we use an auth gate?-->
+                                @can('manage-users')
                                 <a href="{{ route('admin.users.index') }}" class="dropdown-item">
                                     User Management
                                 </a>
+                                @endcan
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                     style="display: none;">

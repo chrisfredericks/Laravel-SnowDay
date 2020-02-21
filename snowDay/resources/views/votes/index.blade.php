@@ -18,6 +18,8 @@
                             <th>Name</th>
                             <th>School</th>
                             <th>Snow Vote</th>
+                            <th>Date Created</th>
+                            <th>Action</th>
                         </tr>
                         @for($i = 0; $i < count($data['votes']); $i++) <tr>
                             <td><a href="/votes/show/{{ $data['votes'][$i]->id }}">{{ $data['votes'][$i]->id }}</a></td>
@@ -25,10 +27,14 @@
                             <td>{{ $data['votes'][$i]->name }}</td>
                             <td>{{ $data['votes'][$i]->school }}</td>
                             <td>{{ $data['votes'][$i]->vote }}</td>
+                            <td>{{ $data['votes'][$i]->created_at }}</td>
+                            <td>
+                                <a href="/votes/delete/{{ $data['votes'][$i]->id }}">Delete</a>
+                            </td>
                             </tr>
                             @endfor
                     </table>
-                    <a href="{{ URL::previous() }}" class="btn btn-info text-white" role="button">Go Back</a>
+                    <a href="/votes/create" class="btn btn-info text-white" role="button">Go Back</a>
 
                 </div>
             </div>

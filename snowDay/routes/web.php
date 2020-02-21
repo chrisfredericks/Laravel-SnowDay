@@ -31,25 +31,13 @@ Route::post('/votes/create', 'VoteController@store')->name('votes.index');
 
 //Show Results
 //TODO: Move this to a controller. Results?
-Route::get('/votes/show', function () {
-    // TODO: Perhaps there is a more efficient way to handle this data?
-    $data['votes'] = DB::table('votes')->get();
-    $data['yesVotes'] = DB::table('votes')->where('vote', 1)->count('vote');
-    $data['noVotes'] = DB::table('votes')->where('vote', 0)->count('vote');
+Route::get('/votes/show', 'VoteController@show')->name('vote.show');
 
-
-    //dd($yesVotes);
-    //return $votes;
-    return view('votes.index', ['data' => $data]);
-});
 //Display specific Vote
 //TODO: Move this to a controller. Results?
-Route::get('/votes/show/{id}', function ($id) {
+Route::get('/votes/show/{id}', 'VoteController@showOne')->name('vote.showOne');
 
-    $vote = DB::table('votes')->find($id);
-
-    return view('votes.show', ['vote' => $vote]);
-});
+Route::get('/votes/delete/{id}', 'VoteController@delete')->name('vote.delete');
 
 //Route::resource('/admin/users', 'Admin\UserController', ['except'=>['show', 'create', 'store']]);
 
