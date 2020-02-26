@@ -30,4 +30,9 @@ Vue.component('chart-component', require('./components/ChartComponent.vue').defa
 
 const app = new Vue({
     el: '#app',
+
+    data: {
+        user:'',
+        school:''
+    }
 });

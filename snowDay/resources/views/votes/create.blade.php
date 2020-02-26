@@ -13,7 +13,7 @@
 
                         @guest
                         <div class="row justify-content-center">
-                            <p class="h1">Hey Stranger!!!</p>
+                            <p class="h1">Hey @{{ user || 'Stranger' }}!!!</p>
                         </div>
                         <div class="row justify-content-center mb-3">
                             <p class="">Let's get to know you first: (or <a href="../register">register</a> to avoid
@@ -26,7 +26,7 @@
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                    name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
+                                    name="name" value="{{ old('name') }}" autocomplete="name" autofocus v-model="user">
                                 <!-- TODO: This validation is not implimented yet -->
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -42,7 +42,7 @@
 
                             <div class="col-md-6">
                                 <input id="school" type="text" class="form-control @error('school') is-invalid
-                                    @enderror" name="school" value="{{ old("school") }}" autocomplete="school">
+                                    @enderror" name="school" value="{{ old("school") }}" autocomplete="school" v-model="school">
                                 <!-- TODO: This validation is not implimented yet -->
                                 @error("school")
                                 <span class="invalid-feedback" role="alert">
@@ -54,7 +54,7 @@
                         <div class="row d-flex justify-content-center">
                             <!-- TODO: Vue: Since we now have name and school in the form above why not
                                 put it in the message like we do for logged in users. See Vue ExampleComponent-->
-                            <p class="h3 text-center my-5">So, will there be a snow day for your school tomorrow?</p>
+                            <p class="h3 text-center my-5">So, will there be a snow day for your @{{ school || 'school' }} tomorrow?</p>
                         </div>
 
                         @else
